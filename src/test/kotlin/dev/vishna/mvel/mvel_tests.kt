@@ -1,7 +1,9 @@
 package dev.vishna.mvel
 
+import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should equal`
 import org.junit.Test
+import org.mvel2.MVEL
 
 class MVELTests {
 
@@ -23,6 +25,13 @@ class MVELTests {
         ))
 
         interpolatedString `should equal` """256 results matching "kotlin""""
+    }
+
+    @Test
+    fun `String expression evaluation`() {
+        data class Foo(val bar: Int)
+        val sum : Int = """1 + 2 + bar""".eval(Foo(3))
+        sum `should be equal to` 6
     }
 }
 

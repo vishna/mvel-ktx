@@ -22,6 +22,8 @@ dependencies {
 
 ## Example usage
 
+### Interpolation
+
 ```kotlin
 val interpolatedString  = """@{resultCount} results matching "@{query}"""".interpolate(mapOf(
             "resultCount" to 256,
@@ -29,6 +31,14 @@ val interpolatedString  = """@{resultCount} results matching "@{query}"""".inter
         ))
 
 print(interpolatedString) // prints "256 results matching "kotlin"
+```
+
+### Evaluation
+
+```kotlin
+data class Foo(val bar: Int)
+val sum : Int = """1 + 2 + bar""".eval(Foo(3))
+println(sum) // prints "6"
 ```
 
 For more documentation on API see [mvel.kt](https://github.com/vishna/mvel-ktx/blob/master/src/main/kotlin/dev/vishna/mvel/mvel.kt) and for more use examples see [mvel_tests.kt](https://github.com/vishna/mvel-ktx/blob/master/src/test/kotlin/dev/vishna/mvel/mvel_tests.kt)
